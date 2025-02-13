@@ -11,6 +11,8 @@ if not os.path.exists(directory):
 response = requests.get(link).text
 main_soup = BeautifulSoup(response, 'html.parser')
 
+regions_cnt = dict()
+
 block = main_soup.find('div', class_='panel-group')
 regions = block.find_all('div', class_='panel panel-default')
 for reg in regions:
@@ -36,6 +38,11 @@ for reg in regions:
             geojson = bloc.find('a').get('href')
             geo_url = "https://tools.paintmaps.com/" + geojson
             geo_response = requests.get(geo_url)
+            if name_geo in regions_cnt:
+                regions_cnt[name_geo] = regions_cnt[name_geo] + 1
+                name_geo = name_geo[:-8] + str(regions_cnt[name_geo]) + ".geojson"
+            else:
+                regions_cnt[name_geo] = 1
             with open(os.path.join(directory, name_geo), 'wb') as f:
                 f.write(geo_response.content)
             print(f"Скачан файл: {name_geo}")
