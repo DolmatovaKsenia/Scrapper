@@ -57,6 +57,11 @@ def main(resolution):
         df.to_csv(new_path)
 
 
+def coord2hash_transformer(width, longitude, resolution):
+    h3index = h3.geo_to_h3(width, longitude, int(resolution))
+    return h3index
+
+
 if __name__ == "__main__":
     main(sys.argv[1])
 
