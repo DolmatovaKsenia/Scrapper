@@ -7,12 +7,12 @@ import requests
 def parser(reg):
     lin = reg.find('a').get('href')
     new_l = "https://tools.paintmaps.com/" + lin
-    resp = requests.get(new_l).text
+    resp = requests.get(new_l, timeout=10).text
     ms = BeautifulSoup(resp, 'html.parser')
     block2 = ms.find_all('div', class_='col-md-12')[1]
     li = block2.find('a').get('href')
     newest_link = "https://tools.paintmaps.com/" + li
-    new_response2 = requests.get(newest_link).text
+    new_response2 = requests.get(newest_link, timeout=10).text
     soup = BeautifulSoup(new_response2, 'html.parser')
     bl = soup.find_all('div', class_='row')
     bloc = ''
@@ -22,7 +22,7 @@ def parser(reg):
     name_geo = bloc.find('a').text
     geojson = bloc.find('a').get('href')
     geo_url = "https://tools.paintmaps.com/" + geojson
-    geo_response = requests.get(geo_url)
+    geo_response = requests.get(geo_url, timeout=10)
     if " " in name_geo:
         name_geo = name_geo.replace(" ", "_")
     if name_geo in regions_cnt:
@@ -40,7 +40,7 @@ directory = 'geojsons_scrapped'
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-response = requests.get(link).text
+response = requests.get(link, timeout=10).text
 main_soup = BeautifulSoup(response, 'html.parser')
 
 regions_cnt = dict()
@@ -66,12 +66,12 @@ for reg in regions:
         href = [lin.get('href') for lin in linker]
         for i in href:
             new_link = "https://tools.paintmaps.com/" + i
-            new_response = requests.get(new_link).text
+            new_response = requests.get(new_link, timeout=10).text
             main_soup2 = BeautifulSoup(new_response, 'html.parser')
             block2 = main_soup2.find_all('div', class_='col-md-12')[1]
             li = block2.find('a').get('href')
             newest_link = "https://tools.paintmaps.com/" + li
-            new_response2 = requests.get(newest_link).text
+            new_response2 = requests.get(newest_link, timeout=10).text
             soup = BeautifulSoup(new_response2, 'html.parser')
             bl = soup.find_all('div', class_='row')
             bloc = ''
@@ -81,7 +81,7 @@ for reg in regions:
             name_geo = bloc.find('a').text
             geojson = bloc.find('a').get('href')
             geo_url = "https://tools.paintmaps.com/" + geojson
-            geo_response = requests.get(geo_url)
+            geo_response = requests.get(geo_url, timeout=10)
             if " " in name_geo:
                 name_geo = name_geo.replace(" ", "_")
             if name_geo in regions_cnt:
