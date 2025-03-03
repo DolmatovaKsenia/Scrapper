@@ -239,3 +239,8 @@ ODONSK ВОЛГОДОНСК Volgodonsk63 Самарская_область Samar
 38 Иркутская_область Irkutskaya UST'-KUT УСТЬ-КУТ Ust'-Kutskiy
 65 Сахалинская_область Sakhalinskaya KHOLMSK ХОЛМСК Kholmskiy2
 65 Сахалинская_область Sakhalinskaya YUZHNO-KURIL'SK ЮЖНО-КУРИЛЬСК ???
+99 Аэропорт_Москвы Airport CHKALOVSKY ЧКАЛОВСКИЙ Chkalovsky_airport
+99 Аэропорт_Москвы Airport DOMODEDOVO ДОМОДЕДОВО Domodedovo_airport
+99 Аэропорт_Москвы Airport SHEREMETYEVO ШЕРЕМЕТЬЕВО Sheremetyevo_airport
+99 Аэропорт_Москвы Airport VNUKOVO ВНУКОВО Vnukovo_airport
+99 Аэропорт_Москвы Airport ZHUKOVSKY ЖУКОВСКИЙ Zhukovsky_airport

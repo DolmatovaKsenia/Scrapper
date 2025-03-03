@@ -7,7 +7,7 @@ def main():
     region_map = []
     Region = namedtuple('Region', ['region_code', 'region_name', 'district_name',
                                    'event_city', 'travel_city', 'cityReg'])
-    my_file = open("final_regions.txt", 'r')
+    my_file = open("final_regions.txt", 'r', encoding="utf-8")
     directory = "final_regions_csv"
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -24,7 +24,8 @@ def main():
         cityReg = cityReg.replace(' ', '_')
         try:
             if not os.path.exists("final_csv_dir/" + cityReg + ".csv"):
-                cityReg.replace('_', ' ')
+                if "airport" not in cityReg:
+                    cityReg.replace('_', ' ')
             data = pd.read_csv("final_csv_dir/" + cityReg + ".csv", sep=',')
             h3all = data["geohash"].values
 
@@ -53,7 +54,7 @@ def main():
             df.to_csv(new_path)
         except OSError:
             if cityReg == "???":
-                with open("no_geojson_found.txt", "a") as f:
+                with open("no_geojson_found.txt", "a", encoding="utf-8") as f:
                     f.write(region.event_city + "\n")
                 continue
             else:

@@ -31,7 +31,7 @@ def main(resolution):
 
     for geohash in geohash_arr:
         for fname in os.listdir("coord2geohash_csv"):
-            f = open("coord2geohash_csv/" + fname)
+            f = open("coord2geohash_csv/" + fname, encoding="utf-8")
             if geohash in f.read():
                 print("coord2geohash_csv/" + fname)
                 shutil.copy(

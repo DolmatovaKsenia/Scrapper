@@ -30,7 +30,7 @@ def parser(reg):
         name_geo = name_geo[:-8] + str(regions_cnt[name_geo]) + ".geojson"
     else:
         regions_cnt[name_geo] = 1
-    with open(os.path.join(directory, name_geo), 'wb') as f:
+    with open(os.path.join(directory, name_geo), 'wb', encoding="utf-8") as f:
         f.write(geo_response.content)
     print(f"Скачан файл: {name_geo}")
 
@@ -89,7 +89,7 @@ for reg in regions:
                 name_geo = name_geo[:-8] + str(regions_cnt[name_geo]) + ".geojson"
             else:
                 regions_cnt[name_geo] = 1
-            with open(os.path.join(directory, name_geo), 'wb') as f:
+            with open(os.path.join(directory, name_geo), 'wb', encoding="utf-8") as f:
                 f.write(geo_response.content)
             print(f"Скачан файл: {name_geo}")
 print(len(regions))
